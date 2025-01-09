@@ -1,0 +1,53 @@
+// npx prisma migrate dev --name ##RELEASENAME###
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model wowoWave {
+  id        Int        @id @default(autoincrement())
+  slots     Int
+  nbUsers   Int
+  active    Boolean    @default(false)
+  startAt   DateTime
+  endAt     DateTime
+  createdAt DateTime   @default(now())
+  users     wowoUser[]
+}
+
+model wowoUser {
+  id           Int          @id @default(autoincrement())
+  ipAddresses  String       @db.Text
+  uniqCodes    String       @db.Text
+  xrdAddresses String       @db.Text
+  isCheater    Boolean      @default(false)
+  isFarmer     Boolean      @default(false)
+  cheatEvents  String       @db.Text
+  data         String       @db.Text
+  referrer     String?
+  telegramData String?      @db.Text
+  stakingDate  DateTime?
+  wowoWave     wowoWave?    @relation(fields: [wowoWaveId], references: [id])
+  wowoWaveId   Int?
+  updatedAt    DateTime     @default(now())
+  createdAt    DateTime     @default(now())
+  rewards      wowoReward[]
+}
+
+model wowoReward {
+  id          Int      @id @default(autoincrement())
+  xrdAddress  String
+  wowoUser    wowoUser @relation(fields: [wowoUserId], references: [id])
+  wowoUserId  Int
+  step        String
+  state       String
+  rewardTrxId String?
+  data        String   @db.Text
+  updatedAt   DateTime @default(now())
+  createdAt   DateTime @default(now())
+}

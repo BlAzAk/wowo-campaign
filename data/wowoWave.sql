@@ -1,0 +1,13 @@
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (1, 100, 0, '2024-10-10 00:00:00.000', '2025-10-10 00:00:00.000', '2024-10-09 22:40:10.000', 100);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (2, 200, 0, '2024-10-15 00:00:00.000', '2024-12-15 23:59:59.000', '2024-10-15 17:51:15.000', 200);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (3, 250, 0, '2024-10-25 09:00:00.000', '2024-11-21 18:26:37.000', '2024-10-25 09:55:02.000', 250);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (4, 250, 0, '2024-11-21 18:26:37.000', '2025-11-21 18:26:39.000', '2024-11-21 18:27:03.000', 250);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (5, 100, 0, '2024-11-29 13:23:14.047', '2024-11-29 13:23:14.047', '2024-11-29 13:23:14.049', 100);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (6, 50, 0, '2024-11-30 11:27:59.352', '2024-11-30 11:27:59.352', '2024-11-30 11:27:59.353', 50);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (7, 50, 0, '2024-12-02 09:58:39.403', '2024-12-02 09:58:39.403', '2024-12-02 09:58:39.406', 50);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (8, 50, 0, '2024-12-03 18:53:56.707', '2024-12-03 18:53:56.707', '2024-12-03 18:53:56.709', 50);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (9, 50, 0, '2024-12-05 16:00:42.744', '2024-12-05 16:00:42.744', '2024-12-05 16:00:42.746', 17);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (10, 20, 0, '2024-12-06 09:49:13.948', '2024-12-06 09:49:13.948', '2024-12-06 09:49:13.950', 20);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (11, 20, 0, '2024-12-07 13:05:36.980', '2024-12-07 13:05:36.980', '2024-12-07 13:05:36.981', 20);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (12, 20, 0, '2024-12-08 10:46:37.065', '2024-12-08 10:46:37.065', '2024-12-08 10:46:37.066', 20);
+INSERT INTO wallet.wowoWave (id, slots, active, startAt, endAt, createdAt, nbUsers) VALUES (13, 100, 1, '2025-01-09 10:40:54.804', '2025-01-09 10:40:54.804', '2025-01-09 10:40:54.806', 1);
