@@ -13,10 +13,10 @@ import {
 import {GatewayApiClient} from "@radixdlt/babylon-gateway-api-sdk";
 import {hexToUint8Array} from "./hexToUint8Array.js";
 
-// Initialisation de l'API Gateway
+// Initialization of the Gateway API
 const gatewayApi = GatewayApiClient.initialize({
     basePath: variables.apiGwUrl,
-    applicationName: 'My XIDAR',
+    applicationName: 'WOWO Campaign',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -24,15 +24,6 @@ const gatewayApi = GatewayApiClient.initialize({
 
 export const api = {
     async getTransactions(address = null, resource = null, transactions = [], cursor = null) {
-        const gatewayApi = GatewayApiClient.initialize({
-            basePath: variables.apiGwUrl,
-            applicationName: 'My XIDAR',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + btoa('gateway:Zhgdt5.nDD'),
-                //'api-key': 'e5fb74de-47fa-4808-a235-2b1059c1b632'
-            },
-        });
 
         return new Promise(async (resolve, reject) => {
             const requestParameters = {
@@ -78,11 +69,10 @@ export const api = {
 
         const currentStatus = await gatewayApi.status.getCurrent();
 
-// Construction de la transaction
         const transactionBuilder = await TransactionBuilder.new();
         let transaction = await transactionBuilder
             .header({
-                networkId: NetworkId.Mainnet, // Utilisation du réseau principal
+                networkId: NetworkId.Mainnet,
                 startEpochInclusive: currentStatus.ledger_state.epoch,
                 endEpochExclusive: currentStatus.ledger_state.epoch + 10,
                 nonce: generateRandomNonce(),
@@ -92,15 +82,13 @@ export const api = {
             })
             .manifest(manifest)
             .sign((hashToSign) => {
-                // Signature de la transaction
                 return fromAccountPrivateKey.signToSignatureWithPublicKey(hashToSign);
             })
             .notarize((hashToSign) => {
-                // Notarisation de la transaction
                 return fromAccountPrivateKey.signToSignature(hashToSign);
             });
 
-        // Validation statique de la transaction
+        // Static validation of the transaction
         await RadixEngineToolkit.NotarizedTransaction.staticallyValidate(
             transaction,
             defaultValidationConfig(NetworkId.Mainnet)
@@ -115,17 +103,12 @@ export const api = {
             const transactionHash = await RadixEngineToolkit.NotarizedTransaction.intentHash(transaction);
             response.transactionId = transactionHash.id
 
-            // Compilation de la transaction notarized
             const compiledNotarizedTransaction = await RadixEngineToolkit.NotarizedTransaction.compile(transaction);
 
-            // La transaction compilée pourrait être directement sous forme d'Uint8Array ou Buffer
-            // Si ce n'est pas le cas, vérifions le type de l'objet et convertissons-le en hexadécimal manuellement
             let transactionHex;
             if (compiledNotarizedTransaction instanceof Uint8Array) {
-                // Si c'est un Uint8Array, on le convertit en hexadécimal
                 transactionHex = Buffer.from(compiledNotarizedTransaction).toString('hex');
             } else if (compiledNotarizedTransaction.toHex) {
-                // Si l'objet a déjà une méthode toHex, on l'appelle
                 transactionHex = compiledNotarizedTransaction.toHex();
             } else {
                 response.code = 500;
@@ -152,7 +135,6 @@ export const api = {
         const networkId = NetworkId.Mainnet;
         const currentEpoch = gatewayStatus.data.ledger_state.epoch; /* Sourced from the API */
 
-        //   Such keys can be created from hex or with `new PrivateKey.Ed25519` / `new PrivateKey.Secp256k1`
         const fromAccountPrivateKey = new PrivateKey.Secp256k1(fromPrivateKey);
         const fromAccountPublicKey = fromAccountPrivateKey.publicKey();
         const fromAccountAddress =
